@@ -60,7 +60,7 @@ jobs:
         username: ${{ secrets.USER }}
         key: ${{ secrets.SSH_KEY }}
         passphrase: ${{ secrets.PASSPHRASE }}
-        scripts: |
-          sudo docker pull surdex/test_workflow
-          sudo docker stop $(sudodocker ps -a -q)
-          sudo doker run --rm -d -p 5000:5000 surdex/test_workflow
+        script: |
+          sudo docker pull ${{ secrets.DOCKER_USERNAME }}/test_workflow
+          sudo docker stop $(sudo docker ps -a -q)
+          sudo docker run --rm -d -p 5000:5000 ${{ secrets.DOCKER_USERNAME }}/test_workflow 
